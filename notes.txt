@@ -1,0 +1,60 @@
+1) public interface Cache {
+public void put(Object key, Object value);
+public Object get(Object key);
+}
+Your cache implementation should provide the following :
+- Guarantee that there is a single instance of the cache
+- Guarantee the type safety of the elements stored in the cache
+- Guarantee the thread safety of the cache
+
+
+Two cache implementations, one based on LRU principle (LRUCacheImpl.java) and other based on SoftReference (SoftCacheImpl.java) 
+is implemented.  Both guarantee single instance by implementing readResolve method and returning the 
+same static cache instance that is initially created when the class gets loaded for the first time by the JVM.
+Type saftey is guaranteed by generic's. 
+
+
+1) LRUCacheImpl.java
+  A sample cache with capacity 25 is initialized in the class and available for use.
+  It supports Keys and Values of type Object.
+Different generic types can be created if need be apart from the Cache<Object, Object> objectCache 
+created in the class.
+
+
+
+2) SoftCacheImpl.java
+It works on the principle of soft refrence's getting Garbage collected when memory runs low and being added
+to the given reference queue which is checked during the PUT operation and the corresponding (key,value) pairs are cleared
+from the cache for each key found in the reference queue.
+Different generic types can be created if need be apart from the Cache<Object, Object> objectCache 
+created in the class.
+
+
+
+
+2. Implement a directed graph of people. Each node in the graph
+should conform to the following interface :
+
+Both the methods are implemented in DirGraph.java and there are  tests in the main method
+of the same class to test some scenarios.
+
+1) public int connected(Node node1, Node node2) {
+
+}
+
+this function returns the 'minimum depth level' among the existing paths (if more than one path then the min depth is chosen
+            between 2 nodes), or  '-1' if no path between nodes, or throws 'IllegalArgumentException' if either one or
+            more nodes in the input don't even exist.
+
+  
+2) public Map<Node, List<Node>> findConnections(Node node, int depth) {
+
+}
+
+returns a map that consists of all people in the graph as "keys" that map to a list of all associated
+connections up to a certain depth. 
+
+NOTE:
+The child Node List for a Key in the map response could contain the Key node in it, since there could be path from one or more 
+of the child nodes leading back to the Key node. 
+           
